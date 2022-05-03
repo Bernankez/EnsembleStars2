@@ -1,7 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ConfigProvider } from "vant";
+import { storeToRefs } from "pinia";
+import { useAppStore } from "@/store";
+
+const appStore = useAppStore();
+
+const { theme, vantThemeStyle } = storeToRefs(appStore);
+</script>
 
 <template>
-  <router-view></router-view>
+  <VanConfigProvider :theme="theme" :theme-vars="vantThemeStyle">
+    <router-view></router-view>
+  </VanConfigProvider>
 </template>
 
 <style>
